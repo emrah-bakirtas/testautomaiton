@@ -22,7 +22,7 @@ public class TestRunner {
         ArrayList<String[]> tests = fileUtil.getTestList();
         int testItemCount = tests.size();
 
-        for (int i = 0; i < testItemCount; i++){
+        for (int i = 0; i < testItemCount; i++) {
 
             String testSuite = tests.get(i)[0];
             String testCase = tests.get(i)[1];
@@ -34,12 +34,10 @@ public class TestRunner {
 
             Class<?> clazz = Class.forName(packagePath + testSuite);
 
-            if (preTestSuite != null && preTestCase != null){
+            if (preTestSuite != null && preTestCase != null) {
 
                 BaseTest.testsWithPreTests.put(testSuiteAndCase, preTestSuiteAndCase);
-            }
-
-            else {
+            } else {
 
                 BaseTest.testsWithPreTests.put(testSuiteAndCase, null);
             }

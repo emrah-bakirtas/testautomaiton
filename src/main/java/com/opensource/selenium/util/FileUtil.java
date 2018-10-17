@@ -16,7 +16,7 @@ public class FileUtil {
 
     public static FileUtil getInstance() {
 
-        if(instance == null) {
+        if (instance == null) {
 
             createInstance();
         }
@@ -26,13 +26,13 @@ public class FileUtil {
 
     private static synchronized void createInstance() {
 
-        if(instance == null) {
+        if (instance == null) {
 
             instance = new FileUtil();
         }
     }
 
-    public HashMap<String, String> readDataFromExcel(String testSuite, String testCase){
+    public HashMap<String, String> readDataFromExcel(String testSuite, String testCase) {
 
         HashMap data = new HashMap();
         DataFormatter formatter = new DataFormatter();
@@ -43,7 +43,7 @@ public class FileUtil {
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheet(testSuite);
 
-            if (sheet != null){
+            if (sheet != null) {
 
                 Iterator<Row> rowIterator = sheet.iterator();
                 Row row = rowIterator.next();
@@ -51,11 +51,11 @@ public class FileUtil {
                 cellIterator.next();
                 int count = 1;
 
-                while (cellIterator.hasNext()){
+                while (cellIterator.hasNext()) {
 
                     Cell cell = cellIterator.next();
 
-                    if (testCase.equalsIgnoreCase(cell.getStringCellValue())){
+                    if (testCase.equalsIgnoreCase(cell.getStringCellValue())) {
 
                         break;
                     }
@@ -72,7 +72,7 @@ public class FileUtil {
                 }
 
                 file.close();
-            } else{
+            } else {
 
                 throw new RuntimeException("Test sheet not found!");
             }
@@ -84,7 +84,7 @@ public class FileUtil {
         return data;
     }
 
-    public ArrayList<String[]> getTestList(){
+    public ArrayList<String[]> getTestList() {
 
         ArrayList<String[]> testWithPreTestList = new ArrayList<>();
         DataFormatter formatter = new DataFormatter();
@@ -95,7 +95,7 @@ public class FileUtil {
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheet(config.getRunSheetName());
 
-            if (sheet != null){
+            if (sheet != null) {
 
                 Iterator<Row> rowIterator = sheet.iterator();
                 Row row = rowIterator.next();
@@ -110,24 +110,22 @@ public class FileUtil {
                     String fourthColumnValue = formatter.formatCellValue(row.getCell(3));
                     String fifthColumnValue = formatter.formatCellValue(row.getCell(4));
 
-                    if (!firstColumnValue.equals("") && !secondColumnValue.equals("")){
+                    if (!firstColumnValue.equals("") && !secondColumnValue.equals("")) {
 
                         testWithPreTest[0] = firstColumnValue;
                         testWithPreTest[1] = secondColumnValue;
 
-                        if (!fourthColumnValue.equals("") && !fifthColumnValue.equals("")){
+                        if (!fourthColumnValue.equals("") && !fifthColumnValue.equals("")) {
 
                             testWithPreTest[2] = fourthColumnValue;
                             testWithPreTest[3] = fifthColumnValue;
-                        }
-                        else{
+                        } else {
 
                             testWithPreTest[2] = null;
                             testWithPreTest[3] = null;
                         }
 
-                    }
-                    else{
+                    } else {
 
                         throw new RuntimeException("Test suite or test case not found!");
                     }
@@ -136,7 +134,7 @@ public class FileUtil {
                 }
 
                 file.close();
-            } else{
+            } else {
 
                 throw new RuntimeException("RunTest sheet not found!");
             }
@@ -148,7 +146,7 @@ public class FileUtil {
         return testWithPreTestList;
     }
 
-    public void writeResultToExcel(String testSuite, String testCase, String result, String output){
+    public void writeResultToExcel(String testSuite, String testCase, String result, String output) {
 
         DataFormatter formatter = new DataFormatter();
 
@@ -159,7 +157,7 @@ public class FileUtil {
 
             int rowNum = 0;
 
-            if (sheet != null){
+            if (sheet != null) {
 
                 Iterator<Row> rowIterator = sheet.iterator();
 
@@ -169,14 +167,14 @@ public class FileUtil {
                     String testSuiteCell = formatter.formatCellValue(row.getCell(0));
                     String testCaseCell = formatter.formatCellValue(row.getCell(1));
 
-                    if ((testSuiteCell.equalsIgnoreCase(testSuite) && testCaseCell.equalsIgnoreCase(testCase)) || testSuiteCell.equals("")){
+                    if ((testSuiteCell.equalsIgnoreCase(testSuite) && testCaseCell.equalsIgnoreCase(testCase)) || testSuiteCell.equals("")) {
 
                         break;
                     }
 
                     rowNum++;
                 }
-            } else{
+            } else {
 
                 throw new RuntimeException("Results sheet not found!");
             }
@@ -192,15 +190,13 @@ public class FileUtil {
             Cell outputCell = row.createCell(colNum++);
             CellStyle style = workbook.createCellStyle();
 
-            if ("true".equalsIgnoreCase(result)){
+            if ("true".equalsIgnoreCase(result)) {
 
                 style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
-            }
-            else if ("false".equalsIgnoreCase(result)){
+            } else if ("false".equalsIgnoreCase(result)) {
 
                 style.setFillForegroundColor(IndexedColors.RED.getIndex());
-            }
-            else {
+            } else {
 
                 style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
             }
@@ -222,7 +218,7 @@ public class FileUtil {
         }
     }
 
-    public String[][] readInputFromResultExcel(String testSuite, String testCase){
+    public String[][] readInputFromResultExcel(String testSuite, String testCase) {
 
         DataFormatter formatter = new DataFormatter();
         String[][] testResults = new String[1][2];
@@ -233,7 +229,7 @@ public class FileUtil {
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheet(config.getResultSheetName());
 
-            if (sheet != null){
+            if (sheet != null) {
 
                 Iterator<Row> rowIterator = sheet.iterator();
                 Row row = rowIterator.next();
@@ -244,7 +240,7 @@ public class FileUtil {
                     String testSuiteCell = formatter.formatCellValue(row.getCell(0));
                     String testCaseCell = formatter.formatCellValue(row.getCell(1));
 
-                    if (testSuite.equalsIgnoreCase(testSuiteCell) && testCase.equalsIgnoreCase(testCaseCell)){
+                    if (testSuite.equalsIgnoreCase(testSuiteCell) && testCase.equalsIgnoreCase(testCaseCell)) {
 
                         testResults[0][0] = formatter.formatCellValue(row.getCell(2));
                         testResults[0][1] = formatter.formatCellValue(row.getCell(3));

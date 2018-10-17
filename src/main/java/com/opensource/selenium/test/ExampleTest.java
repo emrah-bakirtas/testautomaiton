@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ExampleTest extends BaseTest {
 
     @Test
-    public void test(){
+    public void test() {
 
         System.out.println("input : " + input);
         System.out.println("userName : " + data.get("userName"));
@@ -21,7 +21,7 @@ public class ExampleTest extends BaseTest {
 
     @Ignore
     @Test
-    public void test1(){
+    public void test1() {
 
         System.out.println("userName : " + data.get("userName"));
 

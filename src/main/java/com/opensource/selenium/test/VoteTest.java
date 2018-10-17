@@ -4,8 +4,8 @@ import com.opensource.selenium.base.BaseTest;
 import com.opensource.selenium.page.MainPage;
 
 public class VoteTest extends BaseTest {
-	
-	MainPage mp = new MainPage(driver);
+
+    MainPage mp = new MainPage(driver);
 /*
 	@Before
 	public void before() {

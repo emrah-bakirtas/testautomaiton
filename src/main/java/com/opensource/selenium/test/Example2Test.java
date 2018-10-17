@@ -6,7 +6,7 @@ import org.junit.Test;
 public class Example2Test extends BaseTest {
 
     @Test
-    public void test(){
+    public void test() {
 
         System.out.println("input : " + input);
         System.out.println("userName : " + data.get("userName"));

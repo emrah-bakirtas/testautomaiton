@@ -54,7 +54,7 @@ public class BaseTest {
 
         String preTestSuiteAndCase = testsWithPreTests.get(testSuite + "_" + testCase);
 
-        if ( null != preTestSuiteAndCase ){
+        if (null != preTestSuiteAndCase) {
 
             String preTestSuite = preTestSuiteAndCase.split("_")[0];
             String preTestCase = preTestSuiteAndCase.split("_")[1];
@@ -62,19 +62,15 @@ public class BaseTest {
             String preTestSuccess = preTestResult[0][0];
             String preTestOutput = preTestResult[0][1];
 
-            if ("true".equalsIgnoreCase(preTestSuccess)){
+            if ("true".equalsIgnoreCase(preTestSuccess)) {
 
                 BaseTest.input = preTestOutput;
                 result = "true";
-            }
-
-            else if ("false".equalsIgnoreCase(preTestSuccess)){
+            } else if ("false".equalsIgnoreCase(preTestSuccess)) {
 
                 result = "not run";
                 throw new RuntimeException("PreTest (" + preTestSuite + " " + preTestCase + ") for " + testSuite + " " + testCase + " is not success!");
-            }
-
-            else{
+            } else {
 
                 result = "not run";
                 throw new RuntimeException("Run " + preTestSuite + " " + preTestCase + " first before " + testSuite + " " + testCase + "!");
@@ -89,7 +85,7 @@ public class BaseTest {
 
         input = null;
         driver.quit();
-        fileUtil.writeResultToExcel(testSuite, testCase,  result, output);
+        fileUtil.writeResultToExcel(testSuite, testCase, result, output);
         output = null;
     }
 
@@ -99,7 +95,7 @@ public class BaseTest {
         @Override
         protected void failed(Throwable e, Description description) {
 
-            if (!"not run".equalsIgnoreCase(result)){
+            if (!"not run".equalsIgnoreCase(result)) {
 
                 result = "false";
             }

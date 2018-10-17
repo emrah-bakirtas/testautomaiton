@@ -5,7 +5,7 @@ import com.opensource.selenium.page.MainPage;
 
 public class UpdateTest extends BaseTest {
 
-	MainPage mp = new MainPage(driver);
+    MainPage mp = new MainPage(driver);
 /*
 	@Ignore
 	@Before
