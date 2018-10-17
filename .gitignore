@@ -1,0 +1,16 @@
+# eclipse related
+.classpath
+.project
+.settings
+
+# platform related
+.DS_Store
+
+# idea related
+*.iml
+.idea
+
+# binary
+**/bin/*
+**/target/*
+**/out/*
